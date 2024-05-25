@@ -1,5 +1,17 @@
 [![Build Status](https://travis-ci.org/dvhdr/launchpad-pro.svg?branch=master)](https://travis-ci.org/dvhdr/launchpad-pro)
 
+# Fixed Lib
+During the development of MidiLOF, a visual MIDI CC LFO application for the Launchpad Pro ([https://www.youtube.com/@MidiLOF](https://www.youtube.com/@MidiLOF)), two problems were discovered in the launchpad_pro.a library:
+
+- Sending massive MIDI messages can cause the entire whole device to hang.
+- Receiving massive MIDI messages on the DIN port can cause the entire device to hang.
+
+See [https://www.youtube.com/watch?v=jngyewncE5A&t=270s](https://www.youtube.com/watch?v=jngyewncE5A&t=270s) for an example.
+
+Inside the lib directory of this fork, there is a new version of the library: lauchpad_pro_BF2.a. It contains patched functions that handle the two problems. Use Ghidra to compare the two libs for details. Massive MIDI messages will now drop messages (or parts of messages), but no longer hang the device.
+
+I would like to thank [@mat1jaczyyy](https://github.com/mat1jaczyyy) for the excellent tips on dealing with the firmware that he has provided here on Github and on the web. Thank You!
+
 # Launchpad Pro
 Open source firmware for the Novation Launchpad Pro grid controller!  By customising this code, you can:
 
